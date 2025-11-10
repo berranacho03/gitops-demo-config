@@ -5,8 +5,9 @@ metadata:
 data:
   index.html: |
     <!DOCTYPE html>
-    <html>
+    <html lang="es">
     <head>
+      <meta charset="UTF-8">
       <title>Demo GitOps</title>
       <style>
         body {
