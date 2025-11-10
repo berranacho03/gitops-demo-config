@@ -1,3 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-gitops-html
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Demo GitOps</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f4f8;
+          color: #333;
+          text-align: center;
+          margin-top: 10%;
+        }
+        h1 {
+          color: #0078d7;
+        }
+        footer {
+          margin-top: 50px;
+          color: #555;
+          font-size: 0.9em;
+        }
+      </style>
+      <script>
+        // Mostrar nombre si viene como parámetro ?nombre=
+        window.onload = () => {
+          const params = new URLSearchParams(window.location.search);
+          const nombre = params.get("nombre");
+          const mensaje = document.getElementById("mensaje");
+          if (nombre) {
+            mensaje.textContent = `Bienvenido, ${nombre}! 👋`;
+          }
+        };
+      </script>
+    </head>
+    <body>
+      <h1 id="mensaje">Bienvenidos a nuestra presentación de GitOps, clase de Cloud ☁️</h1>
+      <footer>Deploy automatizado con ArgoCD 🚀</footer>
+    </body>
+    </html>
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +66,16 @@ spec:
         image: nginx:1.25.3
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html-volume
+        configMap:
+          name: demo-gitops-html
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -31,4 +87,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: NodePort 
+  type: NodePort
