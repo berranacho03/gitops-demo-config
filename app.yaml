@@ -33,14 +33,14 @@ data:
           const nombre = params.get("nombre");
           const mensaje = document.getElementById("mensaje");
           if (nombre) {
-            mensaje.textContent = `Bienvenido, ${nombre}! 👋`;
+            mensaje.textContent = `Bienvenido, ${nombre}!`;
           }
         };
       </script>
     </head>
     <body>
       <h1 id="mensaje">Bienvenidos a nuestra presentación de GitOps, clase de Cloud ☁️</h1>
-      <footer>Deploy automatizado con ArgoCD 🚀</footer>
+      <footer>Deploy automatizado con ArgoCD</footer>
     </body>
     </html>
 
