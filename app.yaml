@@ -39,7 +39,7 @@ data:
       </script>
     </head>
     <body>
-      <h1 id="mensaje">Esto fue nuestra presentación de GitOps, clase de Cloud ☁️</h1>
+      <h1 id="mensaje">Bienvenidos a nuestra presentación de GitOps, clase de Cloud ☁️</h1>
       <footer>Deploy automatizado con ArgoCD</footer>
     </body>
     </html>
